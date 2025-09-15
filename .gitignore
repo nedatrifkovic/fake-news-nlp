@@ -9,8 +9,10 @@ wheels/
 # Virtual environments
 .venv
 
-# ignore all data files
-data/*
+# ignore all CSVs and raw data
+data/*.csv
+data/interim/*
+data/processed/*
 
-# but keep .gitkeep so GitHub shows folders
+# keep empty folders visible on GitHub
 !data/**/.gitkeep
