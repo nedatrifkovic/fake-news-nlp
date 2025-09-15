@@ -8,5 +8,9 @@ wheels/
 
 # Virtual environments
 .venv
+
+# ignore all data files
 data/*
+
+# but keep .gitkeep so GitHub shows folders
 !data/**/.gitkeep
