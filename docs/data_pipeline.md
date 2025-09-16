@@ -1,3 +1,4 @@
+```
 data/raw/
  ├── fake.csv
  └── true.csv
@@ -38,3 +39,4 @@ src/train.py
 Models & reports
   - Save trained models
   - Visualizations & metrics
+```
