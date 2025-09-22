@@ -17,3 +17,6 @@ data/processed/*
 
 # keep empty folders visible on GitHub
 !data/**/.gitkeep
+
+# ML models
+models/*
