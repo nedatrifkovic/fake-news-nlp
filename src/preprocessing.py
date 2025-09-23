@@ -55,6 +55,9 @@ def preprocess_dataframe(df: pd.DataFrame) -> pd.DataFrame:
     # Apply lemmatization
     df["lemmatized_text"] = df["cleaned_text"].progress_apply(lemm_text)
 
+   # Fill NaN with empty string first
+    df['lemmatized_text'] = df['lemmatized_text'].fillna('')
+
     # Handle empty lemmatized_text
     empty_rows = df[df['lemmatized_text'].str.strip() == '']
     if len(empty_rows) > 0:
@@ -63,6 +66,7 @@ def preprocess_dataframe(df: pd.DataFrame) -> pd.DataFrame:
         df.dropna(subset=['lemmatized_text'], inplace=True)
     else:
         print("No empty lemmatized_text rows found.")
+
 
     # Normalize subject
     if "subject" in df.columns:

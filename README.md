@@ -74,7 +74,43 @@ For more details about the project structure and data flow, see our documentatio
 uv run python src/train.py
 ```   
 4. Run prediction
+
+The prediction script supports three different ways to make predictions:
+
+### Option 1: Direct text input from command line
 ```bash
-uv run python src/predict.py "Your news text here"
+uv run python src/predict.py \
+  --text "Breaking news: Government announces new reforms." \
+  --model logreg_tfidf.pkl \
+  --feature tfidf
 ```
+
+### Option 2: Predict from a text file
+Create a text file in `data/samples/` directory with one news text per line:
+```bash
+# Create the samples directory if it doesn't exist
+mkdir -p data/samples
+
+# Create a sample file with multiple texts (one per line)
+echo "Stock markets rise after positive jobs report." > data/samples/sample_texts.txt
+echo "Scientists discover cure for aging in lab tests." >> data/samples/sample_texts.txt
+```
+
+Then run prediction:
+```bash
+uv run python src/predict.py \
+  --input_file data/samples/sample_texts.txt \
+  --model xgb_tfidf.pkl \
+  --feature tfidf
+```
+
+### Option 3: Interactive input (no arguments)
+```bash
+uv run python src/predict.py --model logreg_tfidf.pkl --feature tfidf
+```
+The script will prompt you to enter the news text for prediction.
+
+### Available Models and Features
+- **Models**: `logreg_tfidf.pkl`, `rf_w2v.pkl`, `xgb_tfidf.pkl`
+- **Features**: `tfidf`, `w2v`
 
