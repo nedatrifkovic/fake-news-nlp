@@ -14,7 +14,6 @@ data/*.csv
 data/raw/*
 data/interim/*
 data/processed/*
-data/samples/*
 
 # keep empty folders visible on GitHub
 !data/**/.gitkeep
