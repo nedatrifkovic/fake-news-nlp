@@ -10,11 +10,13 @@ import numpy as np
 VECTORIZERS_DIR = "models/vectorizers"
 ML_MODELS_DIR = "models/ml_models"
 
+
 # Vectorizer loaders
 def load_tfidf_vectorizer(filename="tfidf_vectorizer.pkl"):
     path = os.path.join(VECTORIZERS_DIR, filename)
     with open(path, "rb") as f:
         vectorizer = pickle.load(f)
+    return vectorizer
     return vectorizer
 
 

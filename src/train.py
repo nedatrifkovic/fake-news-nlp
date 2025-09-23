@@ -1,13 +1,13 @@
 # src/train.py
 
 import pandas as pd
-import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 import xgboost as xgb
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
-import pickle
+from sklearn.metrics import (
+    accuracy_score, precision_score, recall_score, f1_score
+)
 from src.models import (
     get_w2v_features,
     load_tfidf_vectorizer,
@@ -19,9 +19,6 @@ from src.models import (
 df = pd.read_csv("data/processed/processed.csv")
 texts = df["lemmatized_text"].tolist()
 labels = df["label"].values
-
-
-# Load vectorizers
 tfidf_vectorizer = load_tfidf_vectorizer()
 w2v_model = load_word2vec_model()
 
@@ -62,6 +59,7 @@ def evaluate(model, X_test, y_test, name):
     print("Recall:   ", round(recall_score(y_test, y_pred), 4))
     print("F1:       ", round(f1_score(y_test, y_pred), 4))
     print()
+
 
 evaluate(lr_model, X_test_tfidf, y_test, "Logistic Regression TF-IDF")
 evaluate(rf_model, X_test_w2v, y_test, "Random Forest Word2Vec")

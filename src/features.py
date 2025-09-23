@@ -44,8 +44,11 @@ def get_word2vec_features(texts, vector_size=100, window=5, min_count=1):
 
     features = []
     for tokens in tqdm(tokenized_texts, desc="Word2Vec vectorizing"):
-        vectors = [w2v_model.wv[word] for word in tokens if word in w2v_model.wv]
-        if vectors:
+        vectors = []
+        for word in tokens:
+            if word in w2v_model.wv:
+                vectors.append(w2v_model.wv[word])
+        if len(vectors) > 0:
             features.append(np.mean(vectors, axis=0))
         else:
             features.append(np.zeros(vector_size))
