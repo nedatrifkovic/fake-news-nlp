@@ -73,5 +73,5 @@ elif args.feature == "w2v":
 # Predict
 preds = model.predict(X)
 for text, pred in zip(texts, preds):
-    label = "FAKE" if pred == 1 else "REAL"
+    label = "FAKE" if pred == 0 else "REAL"
     print(f"\nText: {text}\nPrediction: {label}")
