@@ -36,7 +36,7 @@ src/train.py
   - Evaluate
         │
         ▼
-Models & reports
+Models
   - Save trained models
   - Visualizations & metrics
 ```

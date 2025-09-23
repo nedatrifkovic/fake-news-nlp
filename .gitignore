@@ -18,5 +18,14 @@ data/processed/*
 # keep empty folders visible on GitHub
 !data/**/.gitkeep
 
-# ML models
-models/*
+# ML models - ignore actual model files but keep directory structure
+models/*.pkl
+models/*.model
+models/*.npy
+models/ml_models/*.pkl
+models/vectorizers/*.pkl
+models/vectorizers/*.model
+models/vectorizers/*.npy
+
+# keep empty folders visible on GitHub
+!models/**/.gitkeep

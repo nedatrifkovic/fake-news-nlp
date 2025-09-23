@@ -1,0 +1,2 @@
+# This file ensures the vectorizers directory is tracked by git
+# Vectorizer models (.pkl, .model files) are ignored but the directory structure is preserved

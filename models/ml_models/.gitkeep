@@ -1,0 +1,2 @@
+# This file ensures the ml_models directory is tracked by git
+# Trained ML models (.pkl files) are ignored but the directory structure is preserved
