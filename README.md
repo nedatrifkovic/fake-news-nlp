@@ -47,17 +47,16 @@ For more details about the data directory structure, see [`data/README.md`](data
    2. Run the **EDA notebook** to generate the **interim dataset**:  
 
       ```bash
-      # Option 1: Using jupyter notebook
-      jupyter notebook notebooks/eda.ipynb
+      # Create kernel for uv environment
+      uv run python -m ipykernel install --user --name fake-news-nlp --display-name "Fake News NLP"
       
-      # Option 2: Using jupyter lab (if you prefer)
-      jupyter lab notebooks/eda.ipynb
-      
-      # Option 3: Using VS Code (if you have Jupyter extension)
-      code notebooks/eda.ipynb
+      # Run the notebook
+      uv run jupyter notebook notebooks/eda.ipynb
       ```
       
-      **Note**: Run all cells in the notebook to generate `data/interim/interim.csv`
+      **Note**: 
+      - Select the "Fake News NLP" kernel in Jupyter
+      - Run all cells to generate `data/interim/interim.csv`
    
    3. Run the **preprocessing script** to generate the **processed dataset**:
 

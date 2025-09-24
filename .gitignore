@@ -29,3 +29,6 @@ models/vectorizers/*.npy
 
 # keep empty folders visible on GitHub
 !models/**/.gitkeep
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
