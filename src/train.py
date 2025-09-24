@@ -7,7 +7,7 @@ import xgboost as xgb
 from sklearn.metrics import (
     accuracy_score, precision_score, recall_score, f1_score
 )
-from src.models import (
+from models import (
     get_w2v_features,
     load_tfidf_vectorizer,
     load_word2vec_model,

@@ -69,8 +69,8 @@ For more details about the data directory structure, see [`data/README.md`](data
    # Generate features and vectorizers
    uv run python src/features.py
 
-   # Train ML models
-   uv run python src/train.py
+   # Train ML models (add src to PYTHONPATH)
+   PYTHONPATH=src uv run python src/train.py
    ```
    
    This will create trained models in `models/ml_models/` and vectorizers in `models/vectorizers/`.
