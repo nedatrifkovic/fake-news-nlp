@@ -17,7 +17,6 @@ def load_tfidf_vectorizer(filename="tfidf_vectorizer.pkl"):
     with open(path, "rb") as f:
         vectorizer = pickle.load(f)
     return vectorizer
-    return vectorizer
 
 
 def load_word2vec_model(filename="word2vec.model"):
@@ -32,6 +31,16 @@ def load_ml_model(filename):
     with open(path, "rb") as f:
         model = pickle.load(f)
     return model
+
+
+# ML model saver
+def save_ml_model(model, filename):
+    """Save a trained ML model to the models/ml_models/ directory"""
+    os.makedirs(ML_MODELS_DIR, exist_ok=True)
+    path = os.path.join(ML_MODELS_DIR, filename)
+    with open(path, "wb") as f:
+        pickle.dump(model, f)
+    print(f"Model saved to {path}")
 
 
 # Helper: average Word2Vec vectors
