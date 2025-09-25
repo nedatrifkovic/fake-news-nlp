@@ -126,6 +126,75 @@ The `models/` folder contains trained machine learning models and vectorizers:
   - `ml_models/` → Trained ML models (Logistic Regression, Random Forest, XGBoost)
   - `vectorizers/` → TF-IDF vectorizer and Word2Vec models
 
+## Docker Support
+
+You can also run this project using Docker:
+
+### Quick Start with Docker
+
+```bash
+# 1. Build the Docker image
+docker build -t fake-news-nlp .
+
+# 2. Download datasets from Kaggle and place in data/raw/
+#    - fake.csv → data/raw/
+#    - true.csv → data/raw/
+
+# 3. Run complete pipeline automatically
+docker run -it --rm -v $(pwd)/data:/app/data fake-news-nlp ./setup.sh
+```
+
+### Manual Docker Commands
+
+```bash
+# Run individual steps
+docker run -it --rm -v $(pwd)/data:/app/data fake-news-nlp uv run python src/preprocessing.py
+docker run -it --rm -v $(pwd)/data:/app/data fake-news-nlp PYTHONPATH=src uv run python src/train.py
+
+# Run Jupyter notebook in container
+docker run -it --rm -p 8888:8888 -v $(pwd)/data:/app/data fake-news-nlp uv run jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser --allow-root
+
+# Run prediction
+docker run -it --rm -v $(pwd)/data:/app/data fake-news-nlp PYTHONPATH=src uv run python src/predict.py --text "Your news text here" --model logreg_tfidf.pkl --feature tfidf
+```
+
+### Automated Setup Scripts
+
+```bash
+# Make scripts executable
+chmod +x setup.sh docker-setup.sh
+
+# Run local setup (after downloading data)
+./setup.sh
+
+# Run Docker setup
+./docker-setup.sh
+```
+
+### Using Makefile (Recommended)
+
+```bash
+# See all available commands
+make help
+
+# Install dependencies
+make install
+
+# Run complete pipeline (after downloading data)
+make setup
+
+# Docker commands
+make docker-build
+make docker-run
+make docker-setup
+
+# Clean generated files
+make clean
+
+# Test prediction
+make test
+```
+
 ## Documentation
 
 For more details about the project structure and data flow, see our documentation:

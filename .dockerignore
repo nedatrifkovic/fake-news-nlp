@@ -1,0 +1,50 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__/
+*.py[oc]
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data files (will be mounted or downloaded)
+data/raw/*.csv
+data/interim/*.csv
+data/processed/*.csv
+
+# Model files (will be generated)
+models/ml_models/*.pkl
+models/vectorizers/*.pkl
+models/vectorizers/*.model
+models/vectorizers/*.npy
+
+# Reports
+reports/images/*.png
+reports/images/*.jpg
+
+# Documentation
+*.md
+!README.md
+
+# Logs
+*.log
