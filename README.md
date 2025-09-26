@@ -144,6 +144,11 @@ docker build -t fake-news-nlp .
 docker run -it --rm -v $(pwd)/data:/app/data fake-news-nlp ./setup.sh
 ```
 
+**Note**: If you get "no such file or directory" error, rebuild the Docker image:
+```bash
+docker build -t fake-news-nlp . --no-cache
+```
+
 ### Manual Docker Commands
 
 ```bash

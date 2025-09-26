@@ -21,6 +21,7 @@ COPY docs/ ./docs/
 COPY data/ ./data/
 COPY models/ ./models/
 COPY reports/ ./reports/
+COPY setup.sh docker-setup.sh Makefile ./
 
 # Install Python dependencies
 RUN uv sync --frozen
@@ -29,6 +30,9 @@ RUN uv sync --frozen
 RUN mkdir -p data/raw data/interim data/processed data/samples
 RUN mkdir -p models/ml_models models/vectorizers
 RUN mkdir -p reports/images
+
+# Make scripts executable
+RUN chmod +x setup.sh docker-setup.sh
 
 # Set environment variables
 ENV PYTHONPATH=/app/src
