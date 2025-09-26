@@ -141,10 +141,13 @@ docker build -t fake-news-nlp .
 #    - true.csv → data/raw/
 
 # 3. Run complete pipeline automatically
-docker run -it --rm -v $(pwd)/data:/app/data fake-news-nlp ./setup.sh
+docker run -it --rm -v $(pwd)/data:/app/data -v $(pwd)/models:/app/models fake-news-nlp ./setup.sh
 ```
 
-**Note**: If you get "no such file or directory" error, rebuild the Docker image:
+**Important**: 
+- `-v $(pwd)/data:/app/data` - mounts data folder for input/output
+- `-v $(pwd)/models:/app/models` - mounts models folder to persist trained models
+- If you get "no such file or directory" error, rebuild the Docker image:
 ```bash
 docker build -t fake-news-nlp . --no-cache
 ```
@@ -153,14 +156,14 @@ docker build -t fake-news-nlp . --no-cache
 
 ```bash
 # Run individual steps
-docker run -it --rm -v $(pwd)/data:/app/data fake-news-nlp uv run python src/preprocessing.py
-docker run -it --rm -v $(pwd)/data:/app/data fake-news-nlp PYTHONPATH=src uv run python src/train.py
+docker run -it --rm -v $(pwd)/data:/app/data -v $(pwd)/models:/app/models fake-news-nlp uv run python src/preprocessing.py
+docker run -it --rm -v $(pwd)/data:/app/data -v $(pwd)/models:/app/models fake-news-nlp PYTHONPATH=src uv run python src/train.py
 
 # Run Jupyter notebook in container
-docker run -it --rm -p 8888:8888 -v $(pwd)/data:/app/data fake-news-nlp uv run jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser --allow-root
+docker run -it --rm -p 8888:8888 -v $(pwd)/data:/app/data -v $(pwd)/models:/app/models fake-news-nlp uv run jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser --allow-root
 
 # Run prediction
-docker run -it --rm -v $(pwd)/data:/app/data fake-news-nlp PYTHONPATH=src uv run python src/predict.py --text "Your news text here" --model logreg_tfidf.pkl --feature tfidf
+docker run -it --rm -v $(pwd)/data:/app/data -v $(pwd)/models:/app/models fake-news-nlp PYTHONPATH=src uv run python src/predict.py --text "Your news text here" --model logreg_tfidf.pkl --feature tfidf
 ```
 
 ### Automated Setup Scripts

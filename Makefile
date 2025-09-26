@@ -39,7 +39,7 @@ docker-build:
 # Run Docker with complete pipeline
 docker-run:
 	@echo " Running Docker with complete pipeline..."
-	docker run -it --rm -v $(PWD)/data:/app/data fake-news-nlp ./setup.sh
+	docker run -it --rm -v $(PWD)/data:/app/data -v $(PWD)/models:/app/models fake-news-nlp ./setup.sh
 
 # Setup Docker environment
 docker-setup:
